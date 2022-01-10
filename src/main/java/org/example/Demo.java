@@ -19,6 +19,9 @@ public class Demo {
     static int WIDTH = 416, HEIGHT = 416;
     static boolean useJavaCvCanvasFrame = true;
 
+    /**
+     * Grab image from OAK-D (with external power) and show on screen with JavaCV
+     */
     static void demoDepthaiRgbPreview() {
         OpenCVFrameConverter.ToMat converter = null;
         CanvasFrame videoCanvas = null;
@@ -62,7 +65,9 @@ public class Demo {
             System.out.println("Initialize JavaCV converter");
             converter = new OpenCVFrameConverter.ToMat();
             System.out.println("Initialize JavaCV CanvasFrame");
+            // TODO: Below will happen errors
             videoCanvas = new CanvasFrame("Preview", 1.0);
+
         }
 
         System.out.println("Ready to show grabbed frame .....");
