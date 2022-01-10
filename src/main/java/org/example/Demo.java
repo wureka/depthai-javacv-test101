@@ -70,7 +70,7 @@ public class Demo {
 
         }
 
-        System.out.println("Ready to show grabbed frame .....");
+        System.out.println("Ready to show grabbed frames .....");
         while (true) {
             try (PointerScope scope = new PointerScope()) {
                 ImgFrame imgFrame = qRgb.getImgFrame();
