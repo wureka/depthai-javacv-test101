@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+ext {
+    javacppVersion  = '1.5.7-SNAPSHOT'
+    javacppPlatform = 'linux-x86_64' // or any other platform, defaults to Loader.getPlatform()
+    opencvVersion   = "4.5.5"
+    openblasVersion = "0.3.19"
+    depthaiVersion  = "2.13.3"
+    ffmpegVersion   = "4.4.1"
+}
+
+group 'org.example'
+version '0.1'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    implementation("org.bytedeco:depthai-platform:${depthaiVersion}-${javacppVersion}")
+    implementation("org.bytedeco:ffmpeg-platform:${ffmpegVersion}-${javacppVersion}") // javacv 需要 ffmpeg 搭配
+    implementation("org.bytedeco:opencv-platform:${opencvVersion}-${javacppVersion}")
+    implementation("org.bytedeco:javacv:${javacppVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
