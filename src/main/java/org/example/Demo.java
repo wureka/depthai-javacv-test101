@@ -47,10 +47,7 @@ public class Demo {
         device.startPipeline(pipeline);
         IntPointer cameras = device.getConnectedCameras();
         System.out.println("Check point 00001----------------");
-        // below leads to:
-        //        Stack trace (most recent call last) in thread 96998:
-        //        #0    Object "[0x7fbab12927ad]", at 0x7fbab12927ad, in
-        //        Segmentation fault (Address not mapped to object [(nil)])
+
         System.out.printf("Detect %s camera(s) \n", cameras);
         System.out.println("Check point 00002----------------");
         System.out.printf("USB speed: %s \n", device.getUsbSpeed());
@@ -69,7 +66,10 @@ public class Demo {
             System.out.println("Initialize JavaCV converter");
             converter = new OpenCVFrameConverter.ToMat();
             System.out.println("Initialize JavaCV CanvasFrame");
-            // TODO: Below will happen errors
+//            TODO: Below will happen errors
+//            Stack trace (most recent call last) in thread 23203:
+//            #0    Object "[0x7f4707eb10f5]", at 0x7f4707eb10f5, in
+//            Segmentation fault (Address not mapped to object [0x8])
             videoCanvas = new CanvasFrame("Preview", 1.0);
 
         }

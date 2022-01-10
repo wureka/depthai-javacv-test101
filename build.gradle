@@ -24,7 +24,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
     implementation("org.bytedeco:depthai-platform:${depthaiVersion}-${javacppVersion}")
-    implementation("org.bytedeco:ffmpeg-platform:${ffmpegVersion}-${javacppVersion}") // javacv needs ffmpeg 
+    implementation("org.bytedeco:ffmpeg-platform:${ffmpegVersion}-${javacppVersion}") // javacv needs ffmpeg
     implementation("org.bytedeco:opencv-platform:${opencvVersion}-${javacppVersion}")
     implementation("org.bytedeco:javacv:${javacppVersion}")
 }
