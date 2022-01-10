@@ -86,8 +86,6 @@ public class Demo {
                         imshow("preview", frame);
                     }
 
-
-
                     if (count >=TOTAL_FRAME_COUNT) break;
                     int key = waitKey(1);
                     if (key == 'q' || key == 'Q') {
@@ -107,7 +105,7 @@ public class Demo {
      * Read a video file and show it
      */
     static void demoJavaCv() throws Exception{
-        File videoFile = new File("/home/alexji/Videos/國道3號 福爾摩沙高速公路 屏東  - 基隆  431.5k - 0k 北向 全程 路程景.mp4");
+        File videoFile = new File("foo.mp4");
         FFmpegFrameGrabber ffmpegFrameGrabber = new FFmpegFrameGrabber(videoFile);
         CanvasFrame canvasFrame = new CanvasFrame("Some Title", 1.0);
 
