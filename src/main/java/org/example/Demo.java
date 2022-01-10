@@ -17,6 +17,10 @@ import static org.bytedeco.opencv.global.opencv_highgui.waitKey;
 public class Demo {
     static boolean INTERLEAVED = false;
     static int WIDTH = 416, HEIGHT = 416;
+    /**
+     * If you set useJavaCvCanvasFrame as true, it will use CanvasFrame of JavaCV to show images.
+     * If you set useJavaCvCanvasFrame as false, it will use imshow of opencv to show images
+     */
     static boolean useJavaCvCanvasFrame = true;
 
     /**
