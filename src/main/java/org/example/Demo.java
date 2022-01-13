@@ -29,6 +29,8 @@ public class Demo {
     static void demoDepthaiRgbPreview() {
         OpenCVFrameConverter.ToMat converter = null;
         CanvasFrame videoCanvas = null;
+
+
         Pipeline pipeline  = new Pipeline();
 
         ColorCamera camRgb = pipeline.createColorCamera();
@@ -58,10 +60,6 @@ public class Demo {
         System.out.println("Check point 00004----------------");
         DataOutputQueue qRgb = device.getOutputQueue("rgb", 4, false);
 
-        Mat frame;
-        long time0 = 0, time1 = 0, accumConvertTime = 0;
-        int count = 0;
-        final int TOTAL_FRAME_COUNT = 1000;
         if (useJavaCvCanvasFrame) {
             System.out.println("Initialize JavaCV converter");
             converter = new OpenCVFrameConverter.ToMat();
@@ -70,9 +68,14 @@ public class Demo {
 //            Stack trace (most recent call last) in thread 23203:
 //            #0    Object "[0x7f4707eb10f5]", at 0x7f4707eb10f5, in
 //            Segmentation fault (Address not mapped to object [0x8])
-            videoCanvas = new CanvasFrame("Preview", 1.0);
-
+            videoCanvas = new CanvasFrame("JavaCV Preview", 1.0);
         }
+
+        Mat opencvMat;
+        long time0 = 0, time1 = 0, accumConvertTime = 0;
+        int count = 0;
+        final int TOTAL_FRAME_COUNT = 1000;
+
 
         System.out.println("Ready to show grabbed frames .....");
         while (true) {
@@ -80,14 +83,14 @@ public class Demo {
                 ImgFrame imgFrame = qRgb.getImgFrame();
                 if (imgFrame != null && !imgFrame.isNull()) {
                     time0 = System.currentTimeMillis();
-                    frame = imgFrame.getCvFrame();
+                    opencvMat = imgFrame.getCvFrame();
                     time1 = System.currentTimeMillis();
                     accumConvertTime += (time1 - time0);
                     count++;
                     if (useJavaCvCanvasFrame) {
-                        videoCanvas.showImage(converter.convert(frame));
+                        videoCanvas.showImage(converter.convert(opencvMat));
                     } else {
-                        imshow("preview", frame);
+                        imshow("opencv preview", opencvMat);
                     }
 
                     if (count >=TOTAL_FRAME_COUNT) break;
