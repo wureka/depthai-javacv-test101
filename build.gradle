@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id "com.github.johnrengelman.shadow" version "6.0.0"
+    id "io.freefair.lombok" version "5.3.3.3"
 }
 
 ext {
@@ -7,7 +9,7 @@ ext {
     javacppPlatform = 'linux-x86_64' // or any other platform, defaults to Loader.getPlatform()
     opencvVersion   = "4.5.5"
     openblasVersion = "0.3.19"
-    depthaiVersion  = "2.13.3"
+    depthaiVersion  = "2.14.0"
     ffmpegVersion   = "4.4.1"
 }
 
@@ -20,6 +22,9 @@ repositories {
 }
 
 dependencies {
+//    compileOnly("org.projectlombok:lombok")
+//    annotationProcessor("org.projectlombok:lombok")
+    runtimeOnly("ch.qos.logback:logback-classic:1.2.3")
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
@@ -31,4 +36,10 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.example.Demo'
+    }
 }
