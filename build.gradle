@@ -5,12 +5,18 @@ plugins {
 }
 
 ext {
-    javacppVersion  = '1.5.7-SNAPSHOT'
     javacppPlatform = 'linux-x86_64' // or any other platform, defaults to Loader.getPlatform()
+//    javacppVersion  = '1.5.7'
+//    opencvVersion   = "4.5.5"
+//    openblasVersion = "0.3.19"
+//    depthaiVersion  = "2.14.1"
+//    ffmpegVersion   = "5.0"
+
+    javacppVersion  = '1.5.8-SNAPSHOT'
     opencvVersion   = "4.5.5"
-    openblasVersion = "0.3.19"
-    depthaiVersion  = "2.14.0"
-    ffmpegVersion   = "4.4.1"
+    openblasVersion = "0.3.20"
+    depthaiVersion  = "2.15.3"
+    ffmpegVersion   = "5.0.1"
 }
 
 group 'org.example'
@@ -32,6 +38,11 @@ dependencies {
     implementation("org.bytedeco:ffmpeg-platform:${ffmpegVersion}-${javacppVersion}") // javacv needs ffmpeg
     implementation("org.bytedeco:opencv-platform:${opencvVersion}-${javacppVersion}")
     implementation("org.bytedeco:javacv:${javacppVersion}")
+
+//    implementation("org.bytedeco:depthai-platform")
+//    implementation("org.bytedeco:ffmpeg-platform") // javacv needs ffmpeg
+//    implementation("org.bytedeco:opencv-platform")
+//    implementation("org.bytedeco:javacv")
 }
 
 test {

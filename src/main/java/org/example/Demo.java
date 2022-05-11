@@ -31,6 +31,8 @@ public class Demo {
         CanvasFrame videoCanvas = null;
 
 
+
+        System.out.println("create a pipeline .......");
         Pipeline pipeline  = new Pipeline();
 
         ColorCamera camRgb = pipeline.createColorCamera();
@@ -63,12 +65,15 @@ public class Demo {
         if (useJavaCvCanvasFrame) {
             System.out.println("Initialize JavaCV converter");
             converter = new OpenCVFrameConverter.ToMat();
+            //tsleep(10000);
             System.out.println("Initialize JavaCV CanvasFrame");
 //            TODO: Below will happen errors
 //            Stack trace (most recent call last) in thread 23203:
 //            #0    Object "[0x7f4707eb10f5]", at 0x7f4707eb10f5, in
 //            Segmentation fault (Address not mapped to object [0x8])
             videoCanvas = new CanvasFrame("JavaCV Preview", 1.0);
+            System.out.println("After initialize JavaCV CanvasFrame");
+            //tsleep(5000);
         }
 
         Mat opencvMat;
@@ -88,12 +93,13 @@ public class Demo {
                     accumConvertTime += (time1 - time0);
                     count++;
                     if (useJavaCvCanvasFrame) {
-                        videoCanvas.showImage(converter.convert(opencvMat));
+                        Frame javacvFrame = converter.convert(opencvMat);
+                        videoCanvas.showImage(javacvFrame);
                     } else {
                         imshow("opencv preview", opencvMat);
                     }
 
-                    if (count >=TOTAL_FRAME_COUNT) break;
+                    //if (count >=TOTAL_FRAME_COUNT) break;
                     int key = waitKey(1);
                     if (key == 'q' || key == 'Q') {
                         break;
@@ -125,9 +131,17 @@ public class Demo {
         ffmpegFrameGrabber.close();
     }
 
+    static void tsleep(long lsec) {
+        try {
+            Thread.sleep(lsec);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void main(String[] args) throws Exception {
-        System.setProperty("org.bytedeco.javacpp.logger.debug", "true");
+        // System.setProperty("org.bytedeco.javacpp.logger.debug", "true");
         // demoJavaCv();
         demoDepthaiRgbPreview();
     }
